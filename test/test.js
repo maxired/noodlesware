@@ -116,4 +116,21 @@ describe("calling emit for an event", function() {
 
 
 
+	describe("when one cb ir registered on several topic", function() {
+		it("topic is called", function(next) {
+
+			noodlesware.use('tutu toto tata', first)
+
+			assert.equal(0, first.counter);
+
+			noodlesware.emit('tata');
+			setTimeout(function() {
+				assert.equal(1, first.counter);
+
+				next();
+			}, 5)
+		});
+	})
+
+
 });
